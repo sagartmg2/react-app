@@ -1,23 +1,27 @@
 import logo from './logo.svg';
 import './App.css';
 
+import Button from './Button';
+import { SmallButton, BigButton } from './NamedButton';
+
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src="logo192.png" className="App-logo" alt="logo" />
-        <p>
-         change me
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+      <div>
+        <Button
+          title="Big"
         >
-          Learn React
-        </a>
-      </header>
+          <p>this is big button</p>
+        </Button >
+        <Button
+          title="Small"
+        />
+
+        {/* <SmallButton />
+        <BigButton /> */}
+
+      </div>
+
     </div>
   );
 }
