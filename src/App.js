@@ -3,19 +3,23 @@ import './App.css';
 
 import Button from './Button';
 import { SmallButton, BigButton } from './NamedButton';
+import Home from './Home';
 
 function App() {
+
+
   return (
     <div className="App">
       <div>
-        <Button
+        <Home />
+        {/* <Button
           title="Big"
         >
           <p>this is big button</p>
         </Button >
         <Button
           title="Small"
-        />
+        /> */}
 
         {/* <SmallButton />
         <BigButton /> */}

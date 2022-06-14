@@ -2,7 +2,7 @@
 
 export default function Button(props) {
 
-    // console.log(props)
+    console.log(props)
 
     function calculate(event) {
         // alert("clicked")
@@ -10,12 +10,27 @@ export default function Button(props) {
         console.log(event.target.type);
     }
 
+    let style_obj = {
+        color: "violet"
+    }
+
+    console.log("button render");
+
+
     return (
         <>
-            {/* {props.children} */}
+            {props.children}
             {/* <button type="button" onclick = "calculate()"> */}
-
-            <button type="button" onClick={calculate}>
+            <button
+                className="button"
+                type="button"
+                onClick={calculate}
+                style={{
+                    color: "violet",
+                    backgroundColor: "orange",
+                    margin: "20px",
+                }}
+            >
                 {props.title}
             </button>
 
