@@ -4,6 +4,7 @@ import './App.css';
 import Button from './Button';
 import { SmallButton, BigButton } from './NamedButton';
 import Home from './Home';
+import Car from './Car';
 
 function App() {
 
@@ -11,7 +12,8 @@ function App() {
   return (
     <div className="App">
       <div>
-        <Home />
+        <Car />
+        {/* <Home /> */}
         {/* <Button
           title="Big"
         >
