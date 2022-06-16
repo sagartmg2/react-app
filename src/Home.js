@@ -13,7 +13,7 @@ export default function Home() {
     // })
 
     function increment() {
-        
+
         // setCount(count + 1) 
         // setCount(count + 1)
         // setCount(count + 1)
@@ -30,6 +30,7 @@ export default function Home() {
 
     return (
         <>
+            <h1>Home</h1>
             {count}
             <br />
             <button onClick={increment}>add</button>

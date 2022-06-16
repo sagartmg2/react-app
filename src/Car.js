@@ -44,12 +44,13 @@ export default class Car extends React.Component {
     }
 
     componentWillUnmount() {
-
+        // Clean up
     }
 
     render() {
         // console.log("render")
         return <>
+            <h1>Car</h1>
             <h2>I am a {this.state.color} Car!</h2>
             <button onClick={this.changeColor}>change color</button>
             {
