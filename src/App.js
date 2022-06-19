@@ -12,26 +12,41 @@ import {
   BrowserRouter,
   Routes,
   Route,
+  Link
 } from "react-router-dom";
-
-import { Link } from "react-router-dom";
+import Show from './Todo/Show';
 
 function App() {
 
   const [show, setfirst] = useState(true)
 
   return (
-    <div className="App">
+    <div className="container">
       <div>
         <div>
           <h1>Home</h1>
           <nav>
-            <Link to="/">Home</Link> |{" "}
-            <Link to="car">car</Link> |{" "}
-            <Link to="todo">TODO</Link>
-            {/* <a href = "todo"/> */}
           </nav>
         </div>
+
+        <nav class="navbar navbar-expand-lg bg-light">
+          <div class="container-fluid">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item px-2">
+                  <Link to="/">Home</Link>
+                </li>
+                <li class="nav-item px-2">
+                  <Link to="car">car</Link>
+                </li>
+                <li class="nav-item px-2">
+                  <Link to="todos">TODO</Link>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+
 
         <Routes>
           <Route path="/" element={<Home />}>
@@ -40,8 +55,10 @@ function App() {
               <Route index element={<LeagueStandings />} /> */}
           </Route>
           <Route path="car" element={<Car />} />
-          <Route path="todo" element={<Todoo />}>
+          <Route path="todos" element={<Todoo />}>
+            <Route path=":id" element={<Show />} />
           </Route>
+          {/* <Route path="todos/:id" element={<Show />}/> */}
         </Routes>
 
         {/* <p>app js</p> */}

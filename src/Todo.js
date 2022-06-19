@@ -1,14 +1,26 @@
 import React, { Fragment, useEffect, useState } from 'react'
+import axios from 'axios';
 
-
-export default function Todo() {
+export default function Todo(props) {
 
     const [count, setCount] = useState(0)
 
-
+    const [todos, setTodo] = useState([])
 
     useEffect(() => {
         console.log("mounted");
+
+        axios.get("https://jsonplaceholder.typicode.com/todos")
+            .then(res => {
+
+                // console.log({ res });
+                setTodo(res.data)
+
+            })
+            .catch(err => {
+                console.log(err);
+            })
+
 
         return () => {
             console.log("unmounted");
@@ -35,8 +47,36 @@ export default function Todo() {
     return (
         <Fragment>
             <h1>TODO LIST</h1>
-            <div>{count}</div>
-            <button onClick={() => { increment(10) }}> increment</button>
+            <table className="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">title</th>
+                        <th scope="col">status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {
+                        todos.map(todo => {
+                            return <tr>
+                                <th scope="row">{todo.id}</th>
+                                <td>{todo.title}</td>
+                                {/* <td>
+                                    <span className="badge rounded-pill text-bg-primary">Primary</span>
+                                </td> */}
+                                <td>
+                                    <span className={`badge rounded-pill text-bg-${todo.completed ? "primary" : "danger"}`}>
+                                        {todo.completed ? "Yes" : "NO"}
+                                    </span>
+                                </td>
+                            </tr>
+                        })
+                    }
+
+                </tbody>
+            </table>
+
+
         </Fragment>
     )
 }
