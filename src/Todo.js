@@ -1,5 +1,6 @@
 import React, { Fragment, useEffect, useState } from 'react'
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 export default function Todo(props) {
 
@@ -53,12 +54,13 @@ export default function Todo(props) {
                         <th scope="col">#</th>
                         <th scope="col">title</th>
                         <th scope="col">status</th>
+                        <th scope="col">Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     {
-                        todos.map(todo => {
-                            return <tr>
+                        todos.map((todo, index) => {
+                            return<tr key={todo.id}>
                                 <th scope="row">{todo.id}</th>
                                 <td>{todo.title}</td>
                                 {/* <td>
@@ -69,7 +71,13 @@ export default function Todo(props) {
                                         {todo.completed ? "Yes" : "NO"}
                                     </span>
                                 </td>
+                                <td>
+                                    <Link to={`/todos/${todo.id}`}>
+                                    <button className='btn btn-sm bg-secondary'>show</button>
+                                    </Link>
+                                </td>
                             </tr>
+
                         })
                     }
 

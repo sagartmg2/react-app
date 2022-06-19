@@ -55,8 +55,10 @@ function App() {
               <Route index element={<LeagueStandings />} /> */}
           </Route>
           <Route path="car" element={<Car />} />
-          <Route path="todos" element={<Todoo />}>
+          <Route path="todos">
+            <Route index element={<Todoo/>} />
             <Route path=":id" element={<Show />} />
+              {/* path = todos/{id} */}
           </Route>
           {/* <Route path="todos/:id" element={<Show />}/> */}
         </Routes>
