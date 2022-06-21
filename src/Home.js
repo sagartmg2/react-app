@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react';
 import Button from './Button';
 
-export default function Home() {
+export default function Home(props) {
 
     let intitial_value = 0
     const [count, setCount] = useState(intitial_value)
     const [title, setTitle] = useState("random")
+
+    
 
     // const [state, setState] = useState({
     //     count: 0,
@@ -35,7 +37,7 @@ export default function Home() {
             <br />
             <button onClick={increment}>add</button>
             <button onClick={decrement}>subtract</button>
-            {/* <Button title = "button"/> */}
+            <Button title = "button" is_logged_in = {props.is_logged_in} />
         </>
     )
 }

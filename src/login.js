@@ -1,9 +1,18 @@
 import axios from 'axios';
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
+import { useNavigate } from 'react-router-dom';
+import { UserContext } from './UserContext';
 
 export default function Login() {
     const [email, setEmail] = useState("dev@dev.com");
     const [password, setPassword] = useState("password");
+
+    const context = useContext(UserContext);
+
+    const { is_logged_in, setLogin } = context
+
+    const navigate = useNavigate();
+
 
     function handleSumbit(event) {
 
@@ -21,16 +30,16 @@ export default function Login() {
         })
             .then(res => {
                 console.log({ res });
-                localStorage.setItem("access_token",res.data.access_token)
-
+                localStorage.setItem("access_token", res.data.access_token)
+                setLogin(true)
+                navigate(-1)
             })
             .catch(err => {
-
+                setLogin(false)
             })
     }
 
     console.log("login --- rednder");
-
     return (
         <form onSubmit={handleSumbit}>
             <div class="mb-3">

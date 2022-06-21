@@ -1,8 +1,12 @@
+import { useContext } from "react";
+import { UserContext } from "./UserContext";
 
 
 export default function Button(props) {
 
     console.log(props)
+
+    const context = useContext(UserContext);
 
     function calculate(event) {
         // alert("clicked")

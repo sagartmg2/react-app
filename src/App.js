@@ -6,7 +6,7 @@ import { SmallButton, BigButton } from './NamedButton';
 import Home from './Home';
 import Car from './Car';
 import Todoo from './Todo';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 
 import {
   BrowserRouter,
@@ -17,10 +17,12 @@ import {
 import Show from './Todo/Show';
 import ProtectedRoute from './ProtectedRoute';
 import Login from './login';
+import { UserContext } from './UserContext';
 
 function App() {
 
   const [show, setfirst] = useState(true)
+  const [is_logged_in, setLogin] = useState(false);
 
   return (
     <div className="container">
@@ -49,24 +51,22 @@ function App() {
           </div>
         </nav>
 
-
-        <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route path="/" element={<Home />}>
-            {/* <Route path=":teamId" element={<Team />} />
-                <Route path="new" element={<NewTeamForm />} />
-              <Route index element={<LeagueStandings />} /> */}
-          </Route>
-          <Route element={<ProtectedRoute />} >
-            <Route path="car" element={<Car />} />
-            <Route path="todos">
-              <Route index element={<Todoo />} />
-              <Route path=":id" element={<Show />} />
-              {/* path = todos/{id} */}
+        <UserContext.Provider value={{ is_logged_in, setLogin }}>
+          <Routes>
+            <Route path="/login" element={<Login />} />
+            <Route path="/" element={<Home is_logged_in={is_logged_in} />}>
             </Route>
-          </Route>
-          {/* <Route path="todos/:id" element={<Show />}/> */}
-        </Routes>
+            <Route element={<ProtectedRoute  />} >
+              <Route path="car" element={<Car />} />
+              <Route path="todos">
+                <Route index element={<Todoo />} />
+                <Route path=":id" element={<Show />} />
+                {/* path = todos/{id} */}
+              </Route>
+            </Route>
+            {/* <Route path="todos/:id" element={<Show />}/> */}
+          </Routes>
+        </UserContext.Provider>
 
         {/* <p>app js</p> */}
         {/* {
@@ -95,6 +95,8 @@ function App() {
 }
 
 export default App;
+
+
 
 
 
