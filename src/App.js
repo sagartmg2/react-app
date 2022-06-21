@@ -15,6 +15,8 @@ import {
   Link
 } from "react-router-dom";
 import Show from './Todo/Show';
+import ProtectedRoute from './ProtectedRoute';
+import Login from './login';
 
 function App() {
 
@@ -49,16 +51,19 @@ function App() {
 
 
         <Routes>
+          <Route path="/login" element={<Login />} />
           <Route path="/" element={<Home />}>
             {/* <Route path=":teamId" element={<Team />} />
                 <Route path="new" element={<NewTeamForm />} />
               <Route index element={<LeagueStandings />} /> */}
           </Route>
-          <Route path="car" element={<Car />} />
-          <Route path="todos">
-            <Route index element={<Todoo/>} />
-            <Route path=":id" element={<Show />} />
+          <Route element={<ProtectedRoute />} >
+            <Route path="car" element={<Car />} />
+            <Route path="todos">
+              <Route index element={<Todoo />} />
+              <Route path=":id" element={<Show />} />
               {/* path = todos/{id} */}
+            </Route>
           </Route>
           {/* <Route path="todos/:id" element={<Show />}/> */}
         </Routes>

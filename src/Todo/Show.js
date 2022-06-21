@@ -46,8 +46,7 @@ export default function Show() {
     <>
       <h1>{todo.title}</h1>
       <p>by - {user.name}</p>
+      {JSON.stringify(user)}
     </>
-
-
   )
 }
