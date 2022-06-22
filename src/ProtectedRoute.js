@@ -4,6 +4,11 @@ import { Navigate, Outlet, useNavigate } from 'react-router-dom'
 import { UserContext } from './UserContext';
 
 
+import { useSelector, useDispatch } from 'react-redux'
+import { login, logout } from './app/reducers/auth'
+
+
+
 export default function ProtectedRoute() {
     const [user, setUser] = useState(null);
 
@@ -11,7 +16,11 @@ export default function ProtectedRoute() {
 
     const [redirect, setRedirect] = useState(false);
 
-    const { is_logged_in, setLogin } = context
+    const { is_logged_in: is_logged_in_old, setLogin } = context
+
+    const is_logged_in = useSelector((state) => { return state.auth.is_logged_in })
+    const dispatch = useDispatch()
+
 
     const navigate = useNavigate();
 
@@ -25,7 +34,10 @@ export default function ProtectedRoute() {
                 }
             })
                 .then(res => {
-                    setLogin(true)
+                    // setLogin(true)
+
+                    dispatch(login())
+                    
                     setRedirect(true)
                 })
                 .catch(err => {
