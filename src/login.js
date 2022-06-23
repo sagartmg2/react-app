@@ -55,8 +55,20 @@ export default function Login() {
     }
 
     function handleChange(e) {
+        console.log(e.target.name)
+        console.log(e.target.value)
         // use event > target>name
         // use event > target>value
+
+        // setstate({email:"afd",password:"asdfa"})
+
+        // // spread operator
+        // // {}
+
+        // `${e.target.name}` : "asdf"  
+
+        setstate({ ...state, [e.target.name]: e.target.value })
+
     }
 
     console.log("login --- rednder");
@@ -65,18 +77,20 @@ export default function Login() {
         <form onSubmit={handleSumbit}>
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Email address</label>
-                <input type="email" name='email'
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    // onChange={handleChange}
+                <input type="email"
+                    name='email'
+                    value={state.email}
+                    // onChange={(e) => setEmail(e.target.value)}
+                    onChange={handleChange}
                     class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
             </div>
             <div class="mb-3">
                 <label for="exampleInputPassword1" class="form-label">Password</label>
                 <input type="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    // onChange={handleChange}
+                    name="password"
+                    value={state.password}
+                    // onChange={(e) => setPassword(e.target.value)}
+                    onChange={handleChange}
                     class="form-control" id="exampleInputPassword1" />
 
             </div>

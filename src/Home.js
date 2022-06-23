@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
+import Counter from './Counter';
 import Button from './Button';
+import Status from './Status';
 
 export default function Home(props) {
 
@@ -7,7 +9,7 @@ export default function Home(props) {
     const [count, setCount] = useState(intitial_value)
     const [title, setTitle] = useState("random")
 
-    
+
 
     // const [state, setState] = useState({
     //     count: 0,
@@ -32,12 +34,17 @@ export default function Home(props) {
 
     return (
         <>
-            <h1>Home</h1>
+            <div className='d-flex'>
+                <Counter />
+                <Status />
+            </div>
+            {/* <h1>Home</h1> */}
+            {/* 
             {count}
             <br />
             <button onClick={increment}>add</button>
             <button onClick={decrement}>subtract</button>
-            <Button title = "button" is_logged_in = {props.is_logged_in} />
+            <Button title = "button" is_logged_in = {props.is_logged_in} /> */}
         </>
     )
 }
