@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { useSelector, useDispatch } from 'react-redux'
-import { increment, decrement } from './app/reducers/counter'
+import { increment, decrement, delayIncrement } from './app/reducers/counter'
 // import { login, logout } from './app/reducers/auth'
 
 export default function Counter() {
@@ -16,6 +16,7 @@ export default function Counter() {
                 <button onClick={() => { dispatch(increment()) }}>add</button>
                 {count}
                 <button onClick={() => { dispatch(decrement()) }}>subtract</button>
+                <button onClick={() => {dispatch(delayIncrement()) }}> delay</button>
             </div>
         </>
     )
