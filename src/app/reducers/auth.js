@@ -7,7 +7,7 @@ export const authSlice = createSlice({
     user: {},
   },
   reducers: {
-    login: (state,action) => {
+    login: (state, action) => {
       console.log(action)
       // Redux Toolkit allows us to write "mutating" logic in reducers. It
       // doesn't actually mutate the state because it uses the Immer library,
@@ -20,12 +20,15 @@ export const authSlice = createSlice({
     },
     setUser: (state, action) => {
       state.user = action.payload
-    }
+    },
+    toggle: (state) => {
+      state.is_logged_in = !state.is_logged_in
+    },
 
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { login, logout, setUser } = authSlice.actions
+export const { login, logout, toggle, setUser } = authSlice.actions
 
 export default authSlice.reducer

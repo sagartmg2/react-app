@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-
+import React from "react"
 import Button from './Button';
 import { SmallButton, BigButton } from './NamedButton';
 import Home from './Home';
@@ -20,10 +20,14 @@ import Login from './login';
 import { UserContext } from './UserContext';
 import Reducer from './Reducer';
 
+export const CounterContext = React.createContext();
+
 function App() {
 
   const [show, setfirst] = useState(true)
   const [is_logged_in, setLogin] = useState(false);
+
+  const [count, setCount] = useState(0);
 
   return (
     <div className="container">
@@ -56,25 +60,28 @@ function App() {
           </div>
         </nav>
 
-        <UserContext.Provider value={{ is_logged_in, setLogin }}>
-          <Routes>
-            <Route path="/login" element={<Login />} />
-            <Route path="/reducer" element={<Reducer />} />
-            <Route path="/" element={<Home is_logged_in={is_logged_in} />}>
-            </Route>
-            <Route element={<ProtectedRoute />} >
-              <Route path="car" element={<Car />} />
-              <Route path="todos">
-                <Route index element={<Todoo />} />
-                <Route path=":id" element={<Show />} />
-                {/* path = todos/{id} */}
-              </Route>
-            </Route>
-            <Route path="*" element={<h1>page not found</h1>} />
+        <CounterContext.Provider value={{ count, setCount }}>
 
-            {/* <Route path="todos/:id" element={<Show />}/> */}
-          </Routes>
-        </UserContext.Provider>
+          <UserContext.Provider value={{ is_logged_in, setLogin }}>
+            <Routes>
+              <Route path="/login" element={<Login />} />
+              <Route path="/reducer" element={<Reducer />} />
+              <Route path="/" element={<Home is_logged_in={is_logged_in} />}>
+              </Route>
+              <Route element={<ProtectedRoute />} >
+                <Route path="car" element={<Car />} />
+                <Route path="todos">
+                  <Route index element={<Todoo />} />
+                  <Route path=":id" element={<Show />} />
+                  {/* path = todos/{id} */}
+                </Route>
+              </Route>
+              <Route path="*" element={<h1>page not found</h1>} />
+
+              {/* <Route path="todos/:id" element={<Show />}/> */}
+            </Routes>
+          </UserContext.Provider>
+        </CounterContext.Provider>
 
         {/* <p>app js</p> */}
         {/* {
